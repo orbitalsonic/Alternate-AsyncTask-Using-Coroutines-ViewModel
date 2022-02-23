@@ -2,10 +2,7 @@ package com.orbitalsonic.alternateasynctask
 
 import android.app.Activity
 import android.util.Log
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.Transformations
-import androidx.lifecycle.ViewModel
+import androidx.lifecycle.*
 import kotlinx.coroutines.*
 
 class LoadingViewModel : ViewModel() {
@@ -24,7 +21,7 @@ class LoadingViewModel : ViewModel() {
     }
 
     fun performSomething(context: Activity) {
-        GlobalScope.launch(Dispatchers.Main + handler) {
+        viewModelScope.launch(Dispatchers.Main + handler) {
             async(Dispatchers.IO + handler) {
                 // Do Something
                 delay(5000)
